@@ -3,30 +3,25 @@
 
 <beans>
 
-	<bean id="triangle" class="org.akshay.demo.Triangle">
-		<property name="type" value="Equilateral"/>
-		<property name="points">
-			<list>
-				<ref bean="zeroPoint" />
-				<!-- Inner Bean -->
-				<bean class="org.akshay.demo.Point">
-					<property name="x" value="-20"/>
-					<property name="y" value="0"/>
-				</bean>
-				<!-- Inner Bean End -->
-				<ref bean="point2" />
-			</list>
-		</property>
+	<bean id="triangle" class="org.akshay.demo.Triangle" autowire="byName">
+	 	<property name="type" value="Equilateral"/> 
 	</bean>
 	
-	<bean id="zeroPoint" class="org.akshay.demo.Point">
+	<bean id="pointA" class="org.akshay.demo.Point">
 		<property name="x" value="0"/>
 		<property name="y" value="0"/>
 	</bean>
 
-	<bean id="point2" class="org.akshay.demo.Point">
+	<bean id="pointB" class="org.akshay.demo.Point">
 		<property name="x" value="20"/>
 		<property name="y" value="0"/>
 	</bean>
+	
+	<bean id="pointC" class="org.akshay.demo.Point">
+		<property name="x" value="-20"/>
+		<property name="y" value="0"/>
+	</bean>
+	
+	
 	
 </beans>
