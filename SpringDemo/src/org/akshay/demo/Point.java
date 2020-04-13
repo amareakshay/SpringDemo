@@ -4,6 +4,10 @@ public class Point {
 	private int x;
 	private int y;
 	
+	public Point() {
+		System.out.println("Initialising Point bean");
+	}
+	
 	public int getX() {
 		return x;
 	}
