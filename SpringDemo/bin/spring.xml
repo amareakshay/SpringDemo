@@ -7,6 +7,12 @@
 	 	<property name="type" value="Equilateral"/> 
 	</bean>
 	
+	<!-- Bead definition for calling custom method for initialization
+	 <bean id="triangle" class="org.akshay.demo.Triangle" autowire="byName" init-method=myInit>
+	 	<property name="type" value="Equilateral"/> 
+	 </bean> 
+	 -->
+	
 	<bean id="pointA" class="org.akshay.demo.Point">
 		<property name="x" value="0"/>
 		<property name="y" value="0"/>
@@ -22,6 +28,7 @@
 		<property name="y" value="0"/>
 	</bean>
 	
-	
+	<!-- Adding a Bean for the Post processor -->
+	<bean class="org.akshay.demo.DisplayBeanPostProcessor" />
 	
 </beans>
