@@ -2,10 +2,15 @@ package org.akshay.demo;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-public class Triangle implements ApplicationContextAware,BeanNameAware {
+
+// InitializingBean tells the method of Triangle Bean needs to be called when the bean is initialized
+//  afterPropertiesSet() will be called immediately after the bean is initialized
+public class Triangle implements DisposableBean,InitializingBean,ApplicationContextAware,BeanNameAware {
 	
 	private String type;
 	private Point pointA;
@@ -69,6 +74,30 @@ public class Triangle implements ApplicationContextAware,BeanNameAware {
 	public void setBeanName(String beanName) {
 		this.beanName = beanName;
 		System.out.println("Bean Name is : " + beanName);
+		
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("Initializing Bean Init method called for Triangle ...");
+		
+	}
+	
+	/* Alternatively we can write our own initialization method instead of imlementins spring's interfaces
+	 * and we can then in our xml mention initialization method to be called by using the param init-method=myInit()
+	 * 
+	 * public void myInit(){
+	 * 		System.out.println("My Init Method Called ...");
+	 * }
+	 * 
+	 * The same can be done for destroy methods as well, we can define a custom destroy method and then 
+	 * add destroy-method=customDestroy() in the bean definition in xml
+	 * 
+	 */
+
+	@Override
+	public void destroy() throws Exception {
+		System.out.println("Triangle bean is destroyed now ...");
 		
 	}
 
