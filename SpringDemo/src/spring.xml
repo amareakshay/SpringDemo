@@ -24,11 +24,24 @@
 	</bean>
 	
 	<bean id="pointC" class="org.akshay.demo.Point">
-		<property name="x" value="-20"/>
-		<property name="y" value="0"/>
+		<property name="x" value="${pointC.pointX}"/>
+		<property name="y" value="${pointC.pointY}"/>
 	</bean>
 	
-	<!-- Adding a Bean for the Post processor -->
+	<!--  Adding a Bean for the Post processor -->
+    <!--
 	<bean class="org.akshay.demo.DisplayBeanPostProcessor" />
+	 -->
+	<!-- Adding a bean factory post processor -->
+	<bean class="org.akshay.demo.MyBeanFactoryPostProcessor" />
+	
+	<!-- We will be taking values for pointC from a properties file
+	     for which we will be using the out of the box Springs PropertyPlaceholderConfigurer
+	 -->
+	 <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	 	<property name="locations" value="pointsconfig.properties" />
+	 </bean>
+	
+	
 	
 </beans>
